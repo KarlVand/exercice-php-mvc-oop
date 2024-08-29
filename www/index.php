@@ -2,40 +2,71 @@
 
 
 declare(strict_types=1);
-class Beverage 
+class Beverage
 {
+    public string $name;
     public string $color;
     public float $price;
     public float $temperature;
 
-    public function __construct(float $temperature)
+   
+    public function __construct(string $name, string $color, float $price, float $temperature)
     {
+        $this->name = $name;
+        $this->color = $color;
+        $this->price = $price;
         $this->temperature = $temperature;
-        if ($temperature < 6)
-        {
-            echo "this drink is cold";
-        }
-        else {
-            echo "this drink is " . $temperature . " it needs to be cooler";
+    }
+    public function checkTemperature()
+    {
+        if ($this->temperature < 6){
+            return "this drink is cold\n";
+        } else {
+            return "this drink is hot, put it back in the fridge";
         }
     }
-    public function getInfo() :  void
+    public function getInfo()
     {
-        echo "<p>This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . "</p>";
+        echo "\nNom: " . $this->name . " : €" . $this->price;
+        echo "<p>(This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . ")</p>";
     }
 }
 
 
-$cola = new Beverage(4);
-$cola->color = "black";
-$cola->price = 2;
-$cola->getInfo();
 
-$lemonade = new Beverage(9);
-$lemonade->color = "yellow";
-$lemonade->price = 3;
-$lemonade->getInfo();
+$cola = new Beverage("Kola", "black", 2, 4);
+echo $cola->getInfo() . "\n";
+echo $cola->checkTemperature() . "\n";
 
-var_dump($cola);
+$lemonade = new Beverage("Lemoon", "yellow", 2, 9);
+echo $lemonade->getInfo() . "\n";
+echo $lemonade->checkTemperature() . "\n";
 
-var_dump($lemonade);
+class AlcoholicBeverage extends Beverage
+{
+    public float $alcoholPercentage;
+    public string $typeOfBeer;
+
+    public function __construct(string $name, string $color, float $price, float $temperature, float $alcoholPercentage, string $typeOfBeer)
+    {
+        parent::__construct($name, $color, $price, $temperature);
+        $this->alcoholPercentage = $alcoholPercentage;
+        $this->typeOfBeer = $typeOfBeer;
+    }
+
+    public function getInfo()
+    {
+        return parent::getInfo() . ", This is a {$this->typeOfBeer}, This beer has an alcohol percentage of " . $this->alcoholPercentage . "%";
+    }
+}
+
+$lafroufrou = new AlcoholicBeverage("la FrouFrou", "blond", 3, 3, 7, "lager");
+echo $lafroufrou->getInfo() . "\n";
+echo $lafroufrou->checkTemperature() . "\n";
+
+
+$duvel = new AlcoholicBeverage("Duvel", "blond", 3.5, 3, 8.5, "lager");
+echo $duvel->getInfo() . "\n";
+echo $duvel->checkTemperature() . "\n";
+
+
