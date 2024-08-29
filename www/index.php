@@ -6,21 +6,36 @@ class Beverage
 {
     public string $color;
     public float $price;
-    public string $temperature;
+    public float $temperature;
 
-    public function getInfo()
+    public function __construct(float $temperature)
     {
-        echo "<p>This beverage is " . $this->temperature  . "and " . $this->color . "</p>";
+        $this->temperature = $temperature;
+        if ($temperature < 6)
+        {
+            echo "this drink is cold";
+        }
+        else {
+            echo "this drink is " . $temperature . " it needs to be cooler";
+        }
+    }
+    public function getInfo() :  void
+    {
+        echo "<p>This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . "</p>";
     }
 }
 
 
-$cola = new Beverage;
+$cola = new Beverage(4);
 $cola->color = "black";
 $cola->price = 2;
+$cola->getInfo();
 
+$lemonade = new Beverage(9);
+$lemonade->color = "yellow";
+$lemonade->price = 3;
+$lemonade->getInfo();
 
+var_dump($cola);
 
-$colaInfo = $cola->getInfo();
-
-var_dump($colaInfo);
+var_dump($lemonade);
