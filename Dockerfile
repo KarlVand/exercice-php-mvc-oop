@@ -30,7 +30,9 @@ WORKDIR /var/www/html
 
 COPY ./apache-config.conf /etc/apache2/sites-available/000-default.conf
 
+COPY php.ini /usr/local/etc/php/php.ini
 
+RUN mkdir -p /usr/local/etc/php/conf.d
 
 # Change ownership of our applications
 RUN chown -R www-data:www-data /var/www/html \
