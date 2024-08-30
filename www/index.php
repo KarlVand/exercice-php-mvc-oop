@@ -4,10 +4,10 @@
 declare(strict_types=1);
 class Beverage
 {
-    public string $name;
-    public string $color;
-    public float $price;
-    public float $temperature;
+    private string $name;
+    private string $color;
+    private float $price;
+    private float $temperature;
 
    
     public function __construct(string $name, string $color, float $price, float $temperature)
@@ -27,20 +27,11 @@ class Beverage
     }
     public function getInfo()
     {
-        echo "\nNom: " . $this->name . " : €" . $this->price;
-        echo "<p>(This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . ")</p>";
+        return "<br><br> Name: " . $this->name . " : €" . $this->price . "<br><p>(This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . ")</p>";
     }
 }
 
 
-
-$cola = new Beverage("Kola", "black", 2, 4);
-echo $cola->getInfo() . "\n";
-echo $cola->checkTemperature() . "\n";
-
-$lemonade = new Beverage("Lemoon", "yellow", 2, 9);
-echo $lemonade->getInfo() . "\n";
-echo $lemonade->checkTemperature() . "\n";
 
 class AlcoholicBeverage extends Beverage
 {
@@ -54,19 +45,27 @@ class AlcoholicBeverage extends Beverage
         $this->typeOfBeer = $typeOfBeer;
     }
 
-    public function getInfo()
+    public function __get($info): string
     {
-        return parent::getInfo() . ", This is a {$this->typeOfBeer}, This beer has an alcohol percentage of " . $this->alcoholPercentage . "%";
+        return $this->getInfo();
+    }
+
+    protected function beerInfo()
+    {
+        echo "<br>This is a {$this->typeOfBeer}, This beer has an alcohol percentage of {$this->alcoholPercentage}%";
     }
 }
 
 $lafroufrou = new AlcoholicBeverage("la FrouFrou", "blond", 3, 3, 7, "lager");
 echo $lafroufrou->getInfo() . "\n";
 echo $lafroufrou->checkTemperature() . "\n";
+echo $lafroufrou->beerInfo();
+
 
 
 $duvel = new AlcoholicBeverage("Duvel", "blond", 3.5, 3, 8.5, "lager");
 echo $duvel->getInfo() . "\n";
 echo $duvel->checkTemperature() . "\n";
+echo $duvel->beerInfo(__call->$beerInfo);
 
 
