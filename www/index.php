@@ -45,15 +45,18 @@ class AlcoholicBeverage extends Beverage
         $this->typeOfBeer = $typeOfBeer;
     }
 
-    public function __get($info): string
+    public function __get($alcohol): string
     {
         return $this->getInfo();
+        
     }
 
-    protected function beerInfo()
+    public function beerInfo()
     {
         echo "<br>This is a {$this->typeOfBeer}, This beer has an alcohol percentage of {$this->alcoholPercentage}%";
     }
+
+   
 }
 
 $lafroufrou = new AlcoholicBeverage("la FrouFrou", "blond", 3, 3, 7, "lager");
@@ -66,6 +69,6 @@ echo $lafroufrou->beerInfo();
 $duvel = new AlcoholicBeverage("Duvel", "blond", 3.5, 3, 8.5, "lager");
 echo $duvel->getInfo() . "\n";
 echo $duvel->checkTemperature() . "\n";
-echo $duvel->beerInfo(__call->$beerInfo);
+echo $duvel->beerInfo();
 
 
