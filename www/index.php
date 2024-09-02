@@ -2,12 +2,16 @@
 
 
 declare(strict_types=1);
+
 class Beverage
 {
-    protected string $name;
-    protected string $color;
-    protected float $price;
-    protected float $temperature;
+    private string $name;
+    private string $color;
+    private float $price;
+    private float $temperature;
+
+    const BAR_NAME = 'Het Vervolg';
+    
 
    
     public function __construct(string $name, string $color, float $price, float $temperature)
@@ -28,6 +32,10 @@ class Beverage
     public function getInfo()
     {
         return "<br><br> Name: " . $this->name . " : €" . $this->price . "<br><p>(This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . ")</p>";
+    }
+    function barName() : string
+    {
+        return ('BAR_NAME');
     }
 }
 
@@ -56,17 +64,28 @@ class AlcoholicBeverage extends Beverage
         echo "<br>This is a {$this->typeOfBeer}, This beer has an alcohol percentage of {$this->alcoholPercentage}%";
     }
 
+    public function barName(): string
+    {
+        return parent::BAR_NAME;
+    }
    
 }
 
 $lafroufrou = new AlcoholicBeverage("la FrouFrou", "blond", 3, 3, 7, "lager");
+
+echo Beverage::BAR_NAME;
+echo "<br>";
 echo $lafroufrou->getInfo() . "\n";
 echo $lafroufrou->checkTemperature() . "\n";
-echo $lafroufrou->beerInfo();
+echo $lafroufrou->beerInfo() . "\n";
+
+
 
 
 
 $duvel = new AlcoholicBeverage("Duvel", "blond", 3.5, 3, 8.5, "lager");
+echo "<br><br><br>";
+echo $duvel->barName();
 echo $duvel->getInfo() . "\n";
 echo $duvel->checkTemperature() . "\n";
 echo $duvel->beerInfo();
