@@ -35,8 +35,8 @@ class Beverage
 
 class AlcoholicBeverage extends Beverage
 {
-    public float $alcoholPercentage;
-    public string $typeOfBeer;
+    protected float $alcoholPercentage;
+    protected string $typeOfBeer;
 
     public function __construct(string $name, string $color, float $price, float $temperature, float $alcoholPercentage, string $typeOfBeer)
     {
