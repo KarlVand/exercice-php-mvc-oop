@@ -6,6 +6,7 @@ services:
       - "8000:80"
     volumes:
       - ./www:/var/www/html
+      - ./classes:/var/www/classes
       - ./php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - db

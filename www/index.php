@@ -1,93 +1,144 @@
 <?php
 
-
 declare(strict_types=1);
 
-class Beverage
+require_once '/var/www/classes/shopItem.php';
+require_once '/var/www/classes/alcoholItem.php';
+
+// OBJECTS //
+
+$bananas = new ShopItem('bananas', 6, 1.00);
+$apples = new ShopItem('apples', 3, 1.50);
+$wineBottles = new AlcoholItem('bottles of wine', 2, 10.00);
+
+$shopItems = [$bananas, $apples, $wineBottles];
+
+echo $bananas->total() . "<br>";
+echo $bananas->tax() . "<br>";
+echo $apples->total() . "<br>";
+echo $apples->tax() . "<br>";
+echo $wineBottles->total() . "<br>";
+echo $wineBottles->tax() . "<br>";
+
+
+function calculateTotalPrice(array $items): float {
+    $total = 0;
+    foreach ($items as $item) {
+        $itemTotal = $item->total();
+        preg_match('/(\d+(\.\d+)?)/', $itemTotal, $matches);
+        $total += floatval($matches[1]);
+    }
+    return $total;
+}
+
+$shopItems = [$bananas, $apples, $wineBottles];
+$totalPrice = calculateTotalPrice($shopItems);
+
+echo "The total value in this shop is {$totalPrice}€ (obviously wrong)";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* function totalPrice($shopItems)
 {
-    private string $name;
-    private string $color;
-    private float $price;
-    private float $temperature;
-
-    const BAR_NAME = 'Het Vervolg';
-    
-
-   
-    public function __construct(string $name, string $color, float $price, float $temperature)
-    {
-        $this->name = $name;
-        $this->color = $color;
-        $this->price = $price;
-        $this->temperature = $temperature;
-    }
-    public function checkTemperature()
-    {
-        if ($this->temperature < 6){
-            return "this drink is cold\n";
-        } else {
-            return "this drink is hot, put it back in the fridge";
-        }
-    }
-    public function getInfo()
-    {
-        return "<br><br> Name: " . $this->name . " : €" . $this->price . "<br><p>(This beverage is " . $this->temperature  . " degrees and the color is " . $this->color . ")</p>";
-    }
-    function barName() : string
-    {
-        return ('BAR_NAME');
+    $items = 1;
+    while ($items < 3) {
+        echo $shopItems('ShopItem', $total);
+        return "The total value in this shop is of {$shopItems->total()}€";
     }
 }
 
+echo totalPrice($shopItems); */
 
 
-class AlcoholicBeverage extends Beverage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* $items = array(
+array(
+    'name' => 'Bananas',
+    'amount' => 6,
+    'price' => 1.00
+),
+array(
+    'name' => 'Apples',
+    'amount' => 3,
+    'price' => 1.50
+),
+array(
+    'name' => 'Bottles of wine',
+    'amount' => 2,
+    'price' => 10.00)
+);
+
+function totalPrice()
 {
-    protected float $alcoholPercentage;
-    protected string $typeOfBeer;
+    global $items;
+    $stock = array_sum(array_column($items, 'amount'));
+    $price = array_sum(array_column($items, 'price'));
 
-    public function __construct(string $name, string $color, float $price, float $temperature, float $alcoholPercentage, string $typeOfBeer)
-    {
-        parent::__construct($name, $color, $price, $temperature);
-        $this->alcoholPercentage = $alcoholPercentage;
-        $this->typeOfBeer = $typeOfBeer;
-    }
+    echo ($stock) * ($price);
 
-    public function getIntel(): string
-    {
-        return $this->getInfo();
-        
-    }
+    $itemStock = array($items, 'amount');
+    $itemPrice = array($items, 'price');
 
-    public function beerInfo()
-    {
-        echo "<br>This is a {$this->typeOfBeer}, This beer has an alcohol percentage of {$this->alcoholPercentage}%";
-    }
-
-    public function barName(): string
-    {
-        return parent::BAR_NAME;
-    }
-   
+    echo $itemStock[0] * $itemPrice[0] + $itemStock[1] * $itemPrice[1] + $itemStock[2] * $itemPrice[2];
 }
 
-$lafroufrou = new AlcoholicBeverage("la FrouFrou", "blond", 3, 3, 7, "lager");
-
-echo Beverage::BAR_NAME;
-echo "<br>";
-echo $lafroufrou->getInfo() . "\n";
-echo $lafroufrou->checkTemperature() . "\n";
-echo $lafroufrou->beerInfo() . "\n";
+echo totalPrice(); */
 
 
 
 
 
-$duvel = new AlcoholicBeverage("Duvel", "blond", 3.5, 3, 8.5, "lager");
-echo "<br><br><br>";
-echo $duvel->barName();
-echo $duvel->getInfo() . "\n";
-echo $duvel->checkTemperature() . "\n";
-echo $duvel->beerInfo();
+/* $items[0]->name = 'Banana';
+$items[0]->price = 1.00;
+$items[0]->quantity = 6;
 
+$items[1]->name = 'Apples';
+$items[1]->price = 1.50;
+$items[1]->quantity = 3;
+
+$items[2]->name = 'Bottles of wine';
+$items[2]->price = 10.00;
+$items[2]->quantity = 2; */
 
