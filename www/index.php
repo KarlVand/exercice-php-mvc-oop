@@ -1,6 +1,59 @@
 <?php
 
-$items = array(
+declare(strict_types=1);
+class ShopItem
+{
+    protected string $name;
+    protected int $amount;
+    protected float $price;
+
+    public function __construct(string $name, int $amount, float $price)
+    {
+        $this->name = $name;
+        $this->amount = $amount;
+        $this->price = $price;
+    }
+
+    public function total()
+    {
+        $total = $this->amount * $this->price;
+        return "The total value of these {$this->name} is : {$total}€";
+    }
+}
+
+$bananas = new ShopItem('Bananas', 6, 1.00);
+$apples = new ShopItem('Apples', 3, 1.50);
+$wineBottle = new ShopItem('Bottles of wine', 2, 10.00);
+
+echo $bananas->total() . "<br>";
+echo $apples->total() . "<br>";
+echo $wineBottle->total() . "<br>";
+
+function totalPrice()
+{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* $items = array(
 array(
     'name' => 'Bananas',
     'amount' => 6,
@@ -17,8 +70,6 @@ array(
     'price' => 10.00)
 );
 
-
-
 function totalPrice()
 {
     global $items;
@@ -31,11 +82,10 @@ function totalPrice()
     $itemPrice = array($items, 'price');
 
     echo $itemStock[0] * $itemPrice[0] + $itemStock[1] * $itemPrice[1] + $itemStock[2] * $itemPrice[2];
-    
-
 }
 
-echo totalPrice();
+echo totalPrice(); */
+
 
 
 
