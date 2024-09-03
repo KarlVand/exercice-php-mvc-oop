@@ -13,12 +13,13 @@ class ShopItem
         $this->name = $name;
         $this->amount = $amount;
         $this->price = $price;
+    
     }
 
     public function total()
     {
-        $total =  $this->amount * $this->price;
-        return "The total value of the {$this->amount} {$this->name} is {$total}€";
+        $total =  $this->amount * $this->price / 2;
+        return "The total value of the {$this->amount} {$this->name} is {$total}€, <br> 50% DISCOUNT ON ALL FRUITS !!!";
 
     }
     public function tax()
@@ -26,4 +27,6 @@ class ShopItem
         $tax =  $this->amount * $this->price * 0.06;
         return "The tax of the {$this->amount} {$this->name} is {$tax}€ <br>";
     }
+
+    
 }
