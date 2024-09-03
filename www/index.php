@@ -1,35 +1,65 @@
 <?php
 
 declare(strict_types=1);
-class ShopItem
-{
-    protected string $name;
-    protected int $amount;
-    protected float $price;
 
-    public function __construct(string $name, int $amount, float $price)
-    {
-        $this->name = $name;
-        $this->amount = $amount;
-        $this->price = $price;
-    }
+require_once '/var/www/classes/shopItem.php';
+require_once '/var/www/classes/alcoholItem.php';
 
-    public function total()
-    {
-        return $this->amount * $this->price;
-
-    }
-}
+// OBJECTS //
 
 $bananas = new ShopItem('bananas', 6, 1.00);
 $apples = new ShopItem('apples', 3, 1.50);
-$wineBottles = new ShopItem('bottles of wine', 2, 10.00);
+$wineBottles = new AlcoholItem('bottles of wine', 2, 10.00);
 
 $shopItems = [$bananas, $apples, $wineBottles];
 
 echo $bananas->total() . "<br>";
+echo $bananas->tax() . "<br>";
 echo $apples->total() . "<br>";
+echo $apples->tax() . "<br>";
 echo $wineBottles->total() . "<br>";
+echo $wineBottles->tax() . "<br>";
+
+
+function calculateTotalPrice(array $items): float {
+    $total = 0;
+    foreach ($items as $item) {
+        $itemTotal = $item->total();
+        preg_match('/(\d+(\.\d+)?)/', $itemTotal, $matches);
+        $total += floatval($matches[1]);
+    }
+    return $total;
+}
+
+$shopItems = [$bananas, $apples, $wineBottles];
+$totalPrice = calculateTotalPrice($shopItems);
+
+echo "The total value in this shop is {$totalPrice}€ (obviously wrong)";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* function totalPrice($shopItems)
 {
@@ -42,9 +72,7 @@ echo $wineBottles->total() . "<br>";
 
 echo totalPrice($shopItems); */
 
-$totalPrice = $apples->total() + $bananas->total() + $wineBottles->total();
 
-echo "the total value in this shop are of {$totalPrice}€";
 
 
 
