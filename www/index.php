@@ -16,23 +16,35 @@ class ShopItem
 
     public function total()
     {
-        $total = $this->amount * $this->price;
-        return "The total value of these {$this->name} is : {$total}€";
+        return $this->amount * $this->price;
+
     }
 }
 
-$bananas = new ShopItem('Bananas', 6, 1.00);
-$apples = new ShopItem('Apples', 3, 1.50);
-$wineBottle = new ShopItem('Bottles of wine', 2, 10.00);
+$bananas = new ShopItem('bananas', 6, 1.00);
+$apples = new ShopItem('apples', 3, 1.50);
+$wineBottles = new ShopItem('bottles of wine', 2, 10.00);
+
+$shopItems = [$bananas, $apples, $wineBottles];
 
 echo $bananas->total() . "<br>";
 echo $apples->total() . "<br>";
-echo $wineBottle->total() . "<br>";
+echo $wineBottles->total() . "<br>";
 
-function totalPrice()
+/* function totalPrice($shopItems)
 {
-    
+    $items = 1;
+    while ($items < 3) {
+        echo $shopItems('ShopItem', $total);
+        return "The total value in this shop is of {$shopItems->total()}€";
+    }
 }
+
+echo totalPrice($shopItems); */
+
+$totalPrice = $apples->total() + $bananas->total() + $wineBottles->total();
+
+echo "the total value in this shop are of {$totalPrice}€";
 
 
 
