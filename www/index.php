@@ -8,32 +8,46 @@ $allStudents = [];
 $group1 = [];
 $group2 = [];
 
-function addStudents(Student $students)
-{
-    global $allStudents, $group1, $group2;
-    $allStudents[] = $students;
+$allStudents =
+[
+$paul = new Student('Verbrugge', 'Paul', 88.2, 1),
+$jacqueline = new Student('Brulux', 'Jacqueline', 96.1, 1),
+$josette = new Student('Bondia', 'Josette', 58.6, 1),
+$jules = new Student('Vanderplast', 'Jules', 32.1, 1),
+$jobert = new Student('Duchateau', 'Jobert', 76.8, 1),
+$claude = new Student('Verbrechts', 'Claude', 25.2, 2),
+$henri = new Student('Ducon', 'Henri', 99.1, 2),
+$nadine = new Student('Mejoree', 'Nadine', 95.6, 2),
+$norbert = new Student('Franluche', 'Norbert', 47.3, 2),
+$jacques = new Student('Fruchon', 'Jacques', 0.0, 2),
+];
 
-    if ($students->getGroup() === 1)
+
+function addStudents($students)
+{
+    global $group1, $group2;
+    
+    foreach ($students as $student)
     {
-        $group1[]= $students;
-    } else {
-        $group2[] = $students;
+        if ($student->getGroup() === 1)
+        {
+            $group1[]= $student->grades();
+        } else {
+            $group2[] = $student->grades();
+        }
     }
 }
 
+addStudents($allStudents);
 
+echo "<h1>GROUP 1</h1> <br>" . implode($group1) . "<br>";
+echo "<h1>GROUP 2</h1> <br>" . implode($group2) . "<br>";
 
-$paul = new Student('Verbrugge', 'Paul', 88.2, 1);
-$jacqueline = new Student('Brulux', 'Jacqueline', 96.1, 1);
-$josette = new Student('Bondia', 'Josette', 58.6, 1);
-$jules = new Student('Vanderplast', 'Jules', 32.1, 1);
-$jobert = new Student('Duchateau', 'Jobert', 76.8, 1);
-$claude = new Student('Verbrechts', 'Claude', 25.2, 1);
-$henri = new Student('Ducon', 'Henri', 99.1, 1);
-$nadine = new Student('Mejoree', 'Nadine', 95.6, 1);
-$norbert = new Student('Franluche', 'Norbert', 47.3, 1);
-$jacques = new Student('Fruchon', 'Jacques', 0.0, 1);
+/* function calculateAverage()
+{
+    global $group1, $group2;
+    return $group1->grade * count($group1) / 5;
+}
 
-global $students;
-echo $students[0]($group1);
+echo calculateAverage(); */
 

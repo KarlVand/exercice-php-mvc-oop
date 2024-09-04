@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 class Student
 {
-    protected string $surname;
+    public string $surname;
     protected string $forename;
     protected float $grade;
     protected int $group;
 
-    public $students = array();
+    public $students = [];
 
     public function __construct(string $surname, string $forename, float $grade, int $group)
     {
@@ -30,7 +30,7 @@ class Student
     }
     public function grades()
     {
-        return "{$this->surname} {$this->forename} : {$this->grade}";
+        return "<b>{$this->surname}</b> {$this->forename} : {$this->grade} <br>";
     }
 
     
