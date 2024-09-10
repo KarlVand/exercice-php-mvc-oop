@@ -22,13 +22,13 @@ $recipes = [
     [
         'title' => 'Cassoulet',
         'recipe' => 'Etape 1 : des flageolets !',
-        'author' => 'mickael.andrieu@exemple.com',
+        'author' => 'email'[0],
         'is_enabled' => true,
     ],
     [
         'title' => 'Couscous',
         'recipe' => 'Etape 1 : de la semoule',
-        'author' => 'mickael.andrieu@exemple.com',
+        'author' => 'email'[0],
         'is_enabled' => false,
     ],
     [
@@ -45,7 +45,7 @@ $recipes = [
     ],
 ];
 
-function displayAuthor(string $authorEmail, array $users): string 
+function displayAuthor(string $authorEmail, array $users)
 {
     foreach ($users as $user) {
         if ($authorEmail === $user['email']) {
@@ -90,9 +90,9 @@ function getRecipes(array $recipes): array
 
         <?php foreach (getRecipes($recipes) as $recipe) : ?>
             <article>
-                <h3><?php echo($recipe['title']); ?></h3>
-                <div><?php echo($recipe['recipe']); ?></div>
-                <i><?php echo(displayAuthor($recipe['author'], $users)); ?></i>
+                <h3><?php echo $recipe['title']; ?></h3>
+                <div><?php echo $recipe['recipe']; ?></div>
+                <i><?php echo displayAuthor($recipe['author'], $users); ?></i>
             </article>
         <?php endforeach ?>
     </div>

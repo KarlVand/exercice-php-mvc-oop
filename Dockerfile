@@ -36,6 +36,6 @@ RUN mkdir -p /usr/local/etc/php/conf.d
 
 # Change ownership of our applications
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+    && chmod -R 755 /var/www/html && chown -R mysql_data
 
 EXPOSE 80
