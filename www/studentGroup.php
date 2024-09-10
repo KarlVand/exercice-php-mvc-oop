@@ -9,7 +9,6 @@ class Student
     protected float $grade;
     protected int $group;
 
-    public $students = [];
 
     public function __construct(string $surname, string $forename, float $grade, int $group)
     {
@@ -30,7 +29,7 @@ class Student
     }
     public function grades()
     {
-        return "<b>{$this->surname}</b> {$this->forename} : {$this->grade} <br>";
+        return $this->grade;
     }
 
     
